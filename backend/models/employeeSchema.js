@@ -2,14 +2,9 @@ const mongoose      = require('mongoose');
 const connection    = require('../config/dbconn')
  
 const EmployeeSchema = new mongoose.Schema({
-    username:String,
     name:String,
-    email:String,
-    password:String,
-    is_admin:{
-        type:Boolean,
-        default:false
-    },
+    department:String,
+    salary:Number,
     user :{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'

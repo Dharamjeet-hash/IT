@@ -23,8 +23,8 @@ app.use(express.urlencoded({extended: true}));
   
 
 
-app.use('/', beforeLogin);
-app.use('/', afterLogin);
+app.use('/api/', beforeLogin);
+app.use('/api/', afterLogin);
 
 app.listen(port, function() {
     console.log("Server is listening at port:" + port);

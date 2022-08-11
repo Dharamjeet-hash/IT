@@ -29,7 +29,7 @@ const validate = validations => {
 
 const register_validation = [
 
-    check('user_name').not().isEmpty().withMessage('Name is required'),
+    check('name').not().isEmpty().withMessage('Name is required'),
 
     check('email')
     .not().isEmpty().withMessage('Email is required')
@@ -91,9 +91,18 @@ const login_validation = [
 ]
 
 const create_employee = [
-  check('name').not().isEmpty().withMessage('Name is required'),
-  check('department').not().isEmpty().withMessage('Deparment is required'),
-  check('salary').not().isEmpty().withMessage('Salary is required')
+  check('name')
+  .not().isEmpty().withMessage('Name is required'),
+  check('department')
+  .not().isEmpty().withMessage('Deparment is required')
+  .custom(async (value,{req})=>{  
+    if(value.toLowerCase() != 'frontend' && value.toLowerCase() != 'backend'){
+      return Promise.reject("Department should be either frontend or backend");
+    }
+  }),
+  check('salary')
+  .not().isEmpty().withMessage('Salary is required')
+  .isInt().withMessage('Salary Should be in digits')
 ]
 
 
